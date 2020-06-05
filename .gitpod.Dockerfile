@@ -42,8 +42,7 @@ RUN apt-get update && apt-get install -y \
 
 USER gitpod
 
-RUN mkdir -p ~/bin; mkdir -p ~/android/lineage;
-RUN chmod +x ~/android/lineage;
+RUN mkdir -p ~/bin
 ENV PATH="$HOME/bin:$PATH"
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 RUN chmod a+x ~/bin/repo
