@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y \
         xsltproc \
         zip \
         zlib1g-dev \
+        openssh-server \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 
 USER gitpod
