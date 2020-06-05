@@ -38,14 +38,14 @@ RUN apt-get update && apt-get install -y \
         xsltproc \
         zip \
         zlib1g-dev \
-    && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
+    && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 
 USER gitpod
 
-RUN mkdir -p ~/bin
-ENV PATH="$HOME/bin:$PATH"
-RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-RUN chmod a+x ~/bin/repo
+RUN mkdir -p ~/bin;
+ENV PATH="$HOME/bin:$PATH";
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
+RUN chmod a+x ~/bin/repo;
 ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV CCACHE_COMPRESS=1
