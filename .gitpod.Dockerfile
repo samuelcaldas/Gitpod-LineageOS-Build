@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y \
         squashfs-tools \
         xsltproc \
         zip \
-        zlib1g-dev
+        zlib1g-dev \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
     RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
     RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
