@@ -56,6 +56,6 @@ RUN chmod a+x ~/bin/repo;
 ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
 ENV CCACHE_COMPRESS=1
-ENV  ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
+# ENV  ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 # Give back control
 USER root
