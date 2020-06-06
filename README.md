@@ -1,1 +1,1 @@
-# Gitpod LineageOS cm-14.1 build config
+# Gitpod LineageOS lineage-17.1 build config
