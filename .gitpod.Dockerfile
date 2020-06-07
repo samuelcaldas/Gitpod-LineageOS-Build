@@ -55,11 +55,6 @@ RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert
 
 USER gitpod
 
-RUN sudo mkdir -p ~/.config/code-server
-RUN sudo chmod 777 ~/.config/code-server
-RUN sudo echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml
-RUN sudo chmod 777 ~/.config/code-server/config.yaml
-
 RUN sudo echo 'echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -' >> ~/duck.sh
 RUN sudo chmod +x ~/duck.sh
 
