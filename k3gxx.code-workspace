@@ -1,28 +1,40 @@
 {
 	"folders": [
 		{
+            "name": "Device",
 			"path": "lineage/device/samsung/k3gxx"
 		},
 		{
+            "name": "vendor",
 			"path": "lineage/vendor/samsung/k3gxx"
 		},
 		{
+            "name": "kernel",
 			"path": "lineage/kernel/samsung/k3gxx"
 		},
 		{
+            "name": "hardware",
 			"path": "lineage/hardware/samsung"
 		},
 		{
-			"path": "lineage/hardware/samsung_slsi-cm/exynos"
-		},
-		{
+            "name": "exynos5",
 			"path": "lineage/hardware/samsung_slsi-cm/exynos5"
 		},
 		{
+            "name": "exynos5422",
 			"path": "lineage/hardware/samsung_slsi-cm/exynos5422"
 		},
 		{
+            "name": "openmax",
 			"path": "lineage/hardware/samsung_slsi-cm/openmax"
+		},
+		{
+            "name": "exynos",
+			"path": "lineage/hardware/samsung_slsi-cm/exynos"
+		},
+		{
+            "name": "manifests",
+			"path": "lineage/.repo/local_manifests"
 		}
 	],
 	"settings": {
