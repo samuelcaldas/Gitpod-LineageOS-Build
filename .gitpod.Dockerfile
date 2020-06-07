@@ -45,17 +45,24 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
     RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
-    RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+    RUN chpasswd gitpod
+    RUN adduser gitpod sudo
+    RUN service ssh start
+    RUN systemctl enable ssh
+    RUN ufw allow ssh
 
 USER gitpod
 
-RUN mkdir -p ~/bin;
-ENV PATH="$HOME/bin:$PATH";
+RUN mkdir -p ~/bin
+ENV PATH="$HOME/bin:$PATH"
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
 RUN chmod a+x ~/bin/repo;
 ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
-ENV CCACHE_COMPRESS=1
+# ENV CCACHE_COMPRESS=1
 # ENV  ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
+# RUN mkdir -p /workspace/Gitpod-LineageOS-Build/lineage
+RUN cd /workspace/Gitpod-LineageOS-Build/lineage
+RUN repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-x86_x64,-mips,-android-emulator
 # Give back control
 USER root
