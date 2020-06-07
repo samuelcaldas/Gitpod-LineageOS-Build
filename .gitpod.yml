@@ -4,5 +4,5 @@ ports:
   - port: 8080
     onOpen: open-browser
 tasks:
-  - command: mv /home/gitpod/.sdkman/candidates/java/current/bin/java /home/gitpod/.sdkman/candidates/java/current/bin/java_old; code-server
-  - command: cd /workspace/Gitpod-LineageOS-Build/lineage; echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -
+  - command: mv /home/gitpod/.sdkman/candidates/java/current/bin/java /home/gitpod/.sdkman/candidates/java/current/bin/java_old; code-server --disable-telemetry --folder=/workspace/Gitpod-LineageOS-Build/lineage
+  - command: cd /workspace/Gitpod-LineageOS-Build/lineage
