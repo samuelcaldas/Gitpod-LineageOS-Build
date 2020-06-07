@@ -1,3 +1,5 @@
 lineage/
-code-server
+code-server/logs/
+
+machineid
 core.node.*
