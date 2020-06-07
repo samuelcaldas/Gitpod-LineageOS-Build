@@ -55,9 +55,6 @@ RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert
 
 USER gitpod
 
-RUN sudo echo 'echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -' >> ~/duck.sh
-RUN sudo chmod +x ~/duck.sh
-
 RUN mkdir -p ~/bin
 ENV PATH="$HOME/bin:$PATH"
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
@@ -67,9 +64,6 @@ ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
 # ENV CCACHE_COMPRESS=1
 # ENV  ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
-# RUN mkdir -p /workspace/Gitpod-LineageOS-Build/lineage
-RUN cd /workspace/Gitpod-LineageOS-Build/lineage
-RUN repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-x86_x64,-mips,-android-emulator
 
 # Give back control
 USER root
