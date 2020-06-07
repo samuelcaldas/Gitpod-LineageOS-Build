@@ -63,6 +63,7 @@ ENV CCACHE_EXEC=/usr/bin/ccache
 # ENV  ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 # RUN mkdir -p /workspace/Gitpod-LineageOS-Build/lineage
 RUN cd /workspace/Gitpod-LineageOS-Build/lineage
-RUN repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-x86_x64,-mips,-android-emulator
+RUN repo init -u https://github.com/LineageOS/android.git -b lineage-15.1 --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-x86_x64,-mips,-android-emulator
+
 # Give back control
 USER root
