@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "lineage/device/samsung/k3gxx"
+		},
+		{
+			"path": "lineage/vendor/samsung/k3gxx"
+		},
+		{
+			"path": "lineage/kernel/samsung/k3gxx"
+		},
+		{
+			"path": "lineage/hardware/samsung"
+		},
+		{
+			"path": "lineage/hardware/samsung_slsi-cm/exynos"
+		},
+		{
+			"path": "lineage/hardware/samsung_slsi-cm/exynos5"
+		},
+		{
+			"path": "lineage/hardware/samsung_slsi-cm/exynos5422"
+		},
+		{
+			"path": "lineage/hardware/samsung_slsi-cm/openmax"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
