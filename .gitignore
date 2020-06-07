@@ -1,5 +1,5 @@
 lineage/
 code-server/logs/
-
+code-server/extensions/*
 machineid
 core.node.*
