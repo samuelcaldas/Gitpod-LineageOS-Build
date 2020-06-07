@@ -53,7 +53,6 @@ RUN apt-get update && apt-get install -y \
     RUN mkdir -p ~/.config/code-server
     RUN chmod 777 ~/.config/code-server
     RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml
-    RUN systemctl --global enable --now code-server
     RUN echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -
 
 
@@ -61,7 +60,7 @@ USER gitpod
 RUN mkdir -p ~/.config/code-server
 RUN chmod 777 ~/.config/code-server
 RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml
-RUN systemctl --global restart code-server
+RUN code-server
 RUN echo 'echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -' >> ~/duck.sh
 RUN chmod +x ~/duck.sh
 RUN ~/duck.sh
