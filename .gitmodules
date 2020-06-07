@@ -1,0 +1,4 @@
+[submodule "lineage/.repo/local_manifests"]
+	path = lineage/.repo/local_manifests
+	url = https://github.com/samuelcaldas/k3gxx_manifests.git
+	branch = lineage-17.1
