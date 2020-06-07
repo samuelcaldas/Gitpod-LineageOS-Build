@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="samuelcaldas/android_device_samsung_k3gxx"     path="device/samsung/k3gxx" remote="github" revision="lineage-15.1" />
+  <project name="samuelcaldas/android_device_samsung_k3gxx"     path="device/samsung/k3gxx" remote="github" />
   <project name="samuelcaldas/android_kernel_samsung_k3gxx"     path="kernel/samsung/k3gxx" remote="github" revision="lineage-15.1" />
   <project name="samuelcaldas/proprietary_vendor_samsung_k3gxx" path="vendor/samsung/k3gxx" remote="github" revision="lineage-15.1" />
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" revision="lineage-15.1" />
