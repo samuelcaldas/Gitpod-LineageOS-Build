@@ -50,7 +50,7 @@ RUN chpasswd root
 RUN service ssh start
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN mkdir -p ~/.config/code-server
-RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml 
+RUN echo 'bind-addr: 0.0.0.0:443 \nauth: password \npassword: hebroN01 \ncert: true \n' >> ~/.config/code-server/config.yaml 
 
 
 USER gitpod
