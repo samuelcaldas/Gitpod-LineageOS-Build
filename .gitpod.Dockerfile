@@ -46,26 +46,26 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
     RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
     RUN chpasswd gitpod
-    RUN adduser gitpod sudo
+    RUN chpasswd root
     RUN service ssh start
-    RUN systemctl enable ssh
     RUN curl -fsSL https://code-server.dev/install.sh | sh
     RUN mkdir -p ~/.config/code-server
-    RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml
-    RUN echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -
+    RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml 
 
 
 USER gitpod
+
 RUN mkdir -p ~/.config/code-server
 RUN echo 'bind-addr: 0.0.0.0:443 \n auth: password \n password: hebroN01 \n cert: true \n' >> ~/.config/code-server/config.yaml
-RUN code-server
+
 RUN echo 'echo url="https://www.duckdns.org/update?domains=gitpod&token=b4d96824-e96c-459a-91e4-de226a8d6ff7&ip=" | curl -k -o ~/duck.log -K -' >> ~/duck.sh
 RUN chmod +x ~/duck.sh
-RUN ~/duck.sh
+
 RUN mkdir -p ~/bin
 ENV PATH="$HOME/bin:$PATH"
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
 RUN chmod a+x ~/bin/repo;
+
 ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
 # ENV CCACHE_COMPRESS=1
