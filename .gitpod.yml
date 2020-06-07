@@ -4,5 +4,5 @@ ports:
   - port: 8080
     onOpen: open-browser
 tasks:
-  - command: mv /home/gitpod/.sdkman/candidates/java/current/bin/java /home/gitpod/.sdkman/candidates/java/current/bin/java_old; code-server --disable-telemetry --auth=none --folder=/workspace/Gitpod-LineageOS-Build/lineage
+  - command: mv /home/gitpod/.sdkman/candidates/java /home/gitpod/.sdkman/candidates/java_old; code-server --disable-telemetry --auth=none --folder=/workspace/Gitpod-LineageOS-Build/lineage
   - command: cd /workspace/Gitpod-LineageOS-Build/lineage
