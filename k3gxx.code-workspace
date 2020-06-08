@@ -39,5 +39,56 @@
 	],
 	"settings": {
 		"git.ignoreLimitWarning": true
-	}
+	},
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+			{
+				"type": "shell",
+				"label": "Sync",
+				"command": "repo",
+				"args": [
+					"sync",
+					"-d",
+					"-d", 
+					"-c", 
+					"--force-sync", 
+					"--no-clone-bundle", 
+					"--no-tags", 
+					"-j$(nproc --all)", 
+					"--fail-fast"
+				],
+				"options": {
+					"cwd": "/workspace/Gitpod-LineageOS-Build/lineage/"
+				},
+				"problemMatcher": []
+			},
+			{
+				"type": "shell",
+				"label": "setup",
+				"command": "source ",
+				"group": "test",
+				"args": [
+					"build/envsetup.sh",
+				],
+				"options": {
+					"cwd": "/workspace/Gitpod-LineageOS-Build/lineage/"
+				},
+				"problemMatcher": []
+			},
+			{
+				"type": "shell",
+				"label": "build",
+				"command": "brunch",
+				"group": "test",
+				"args": [
+					"k3gxx",
+				],
+				"options": {
+					"cwd": "/workspace/Gitpod-LineageOS-Build/lineage/"
+				},
+				"problemMatcher": []
+			}
+		]
+    }
 }
