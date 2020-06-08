@@ -1,3 +1,5 @@
 {
-    "window.menuBarVisibility": "visible"
+    "window.menuBarVisibility": "visible",
+    "git.confirmSync": false,
+    "git.autofetch": true
 }
