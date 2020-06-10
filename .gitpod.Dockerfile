@@ -45,25 +45,25 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
-RUN chpasswd gitpod
-RUN chpasswd root
-RUN service ssh start
+
+RUN sudo -u gitpod service ssh start
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN mkdir -p ~/.config/code-server
 RUN echo 'bind-addr: 0.0.0.0:8080 \nauth: password \npassword: false \ncert: false \n' >> ~/.config/code-server/config.yaml 
-
+RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
+RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -f /home/gitpod/.ssh/id_rsa -C "gitpod" -N ""
+RUN sudo -u gitpod service ssh restart
 
 USER gitpod
 
 RUN mkdir -p ~/bin
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
 ENV PATH="$HOME/bin:$PATH"
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
 RUN chmod a+x ~/bin/repo;
-
 ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
-# ENV CCACHE_COMPRESS=1
-# ENV  ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx8G"
 
 # Give back control
 USER root
