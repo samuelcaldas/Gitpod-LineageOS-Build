@@ -58,7 +58,7 @@ RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.
 RUN sudo -u gitpod touch /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod chmod 600 /home/gitpod/.ssh/authorized_keys
-RUN sed -i.bak 's/#   Port 22/   Port 3333/' /etc/ssh/sshd_config
+RUN sed -i.bak 's/#   Port 22/    Port 3333/' /etc/ssh/sshd_config
 RUN sudo service ssh restart
 RUN sudo -u gitpod echo 'set tmate-api-key "tmk-7KLySbafzKyMFRjgAZuAbV3vm2" \nset tmate-session-name "lineage17" \nset tmate-authorized-keys "/home/gitpod/.ssh/authorized_keys" \n' >> /home/gitpod/.tmate.conf
 
