@@ -45,6 +45,7 @@ RUN apt-get update && apt-get install -y \
         xsltproc \
         zip \
         zlib1g-dev \
+        net-tools \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
 
@@ -57,21 +58,22 @@ RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.
 RUN sudo -u gitpod touch /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod chmod 600 /home/gitpod/.ssh/authorized_keys
-RUN sed -i.bak 's/#   Port 22/   Port 3333/' ~/.config/code-server/config.yaml
+RUN sed -i.bak 's/#   Port 22/   Port 3333/' /etc/ssh/sshd_config
 RUN sudo service ssh restart
+RUN sudo -u gitpod echo 'set tmate-api-key "tmk-7KLySbafzKyMFRjgAZuAbV3vm2" \nset tmate-session-name "lineage17" \nset tmate-authorized-keys "/home/gitpod/.ssh/authorized_keys" \n' >> /home/gitpod/.tmate.conf
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh
-RUN mkdir -p ~/.config/code-server
-RUN echo 'bind-addr: 0.0.0.0:8080 \nauth: password \npassword: false \ncert: false \n' >> ~/.config/code-server/config.yaml 
+RUN mkdir -p /home/gitpod/.config/code-server
+RUN echo 'bind-addr: 0.0.0.0:8080 \nauth: password \npassword: false \ncert: false \n' >> /home/gitpod/.config/code-server/config.yaml 
 
 USER gitpod
 
-RUN mkdir -p ~/bin
+RUN mkdir -p /home/gitpod/bin
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 ENV PATH="$HOME/bin:$PATH"
-RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo;
-RUN chmod a+x ~/bin/repo;
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /home/gitpod/bin/repo;
+RUN chmod a+x /home/gitpod/bin/repo;
 ENV USE_CCACHE=1
 ENV CCACHE_EXEC=/usr/bin/ccache
 
