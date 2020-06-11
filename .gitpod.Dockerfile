@@ -64,7 +64,7 @@ RUN sudo sed -i.bak 's/SHELLINABOX_USER=shellinabox/SHELLINABOX_USER=gitpod/' /e
 RUN sudo sed -i.bak 's/SHELLINABOX_GROUP=shellinabox/SHELLINABOX_GROUP=gitpod/' /etc/default/shellinabox
 RUN sudo update-rc.d shellinabox defaults
 RUN sudo systemctl enable shellinabox
-RUN sudo service shellinaboxd start || sudo service shellinaboxd restart || sudo systemctl start shellinaboxd || sudo systemctl restart shellinaboxd
+RUN sudo service shellinabox start || sudo service shellinabox restart || sudo systemctl start shellinabox || sudo systemctl restart shellinabox
 
 # ttyd section
 RUN curl https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /home/gitpod/bin/ttyd;
