@@ -62,8 +62,8 @@ RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
 # shellinabox section
 RUN sudo sed -i.bak 's/SHELLINABOX_USER=shellinabox/SHELLINABOX_USER=gitpod/' /etc/default/shellinabox
 RUN sudo sed -i.bak 's/SHELLINABOX_GROUP=shellinabox/SHELLINABOX_GROUP=gitpod/' /etc/default/shellinabox
-RUN sudo update-rc.d shellinaboxd defaults
-#RUN sudo systemctl enable shellinaboxd
+RUN sudo update-rc.d shellinabox defaults
+RUN sudo systemctl enable shellinabox
 RUN sudo service shellinaboxd start || sudo service shellinaboxd restart || sudo systemctl start shellinaboxd || sudo systemctl restart shellinaboxd
 
 # ttyd section
