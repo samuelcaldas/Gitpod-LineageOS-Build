@@ -7,6 +7,7 @@ FROM gitpod/workspace-full:latest
 # More information: https://www.gitpod.io/docs/config-docker/
 
 USER root
+RUN sudo echo "Set disable_coredump false" >> /etc/sudo.conf
 RUN apt-get update && apt-get install -y \
         sudo \
         openjdk-8-jdk \
@@ -51,7 +52,7 @@ RUN sudo systemctl enable ssh
 RUN sudo service ssh start
 RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
 RUN sudo -u gitpod chmod 700 /home/gitpod/.ssh
-RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod"
+RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.ssh/id_rsa
 RUN sudo -u gitpod touch /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod chmod 600 /home/gitpod/.ssh/authorized_keys
