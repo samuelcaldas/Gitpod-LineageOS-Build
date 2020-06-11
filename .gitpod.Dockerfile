@@ -46,13 +46,20 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
 
-RUN service ssh start
+RUN sudo update-rc.d ssh defaults
+RUN sudo systemctl enable ssh
+RUN sudo service ssh start
+RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
+RUN sudo -u gitpod chmod 700 /home/gitpod/.ssh
+RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod"
+RUN sudo -u gitpod touch /home/gitpod/.ssh/authorized_keys
+RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
+RUN sudo -u gitpod chmod 600 /home/gitpod/.ssh/authorized_keys
+RUN sudo service ssh restart
+
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN mkdir -p ~/.config/code-server
 RUN echo 'bind-addr: 0.0.0.0:8080 \nauth: password \npassword: false \ncert: false \n' >> ~/.config/code-server/config.yaml 
-RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
-RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -f /home/gitpod/.ssh/id_rsa -C "gitpod" -N ""
-RUN service ssh restart
 
 USER gitpod
 
