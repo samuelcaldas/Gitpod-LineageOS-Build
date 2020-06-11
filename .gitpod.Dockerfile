@@ -76,7 +76,7 @@ RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
 RUN sudo -u gitpod chmod 700 /home/gitpod/.ssh
 RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.ssh/id_rsa
 RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
-RUN sudo -u gitpod chmod 600 /home/gitpod/.ssh/authorized_keys
+RUN sudo chmod 600 /home/gitpod/.ssh/authorized_keys
 RUN sudo sed -i.bak 's/#Port 22/Port 3333/' /etc/ssh/sshd_config
 RUN sudo sed -i.bak 's/#PasswordAuthentication yes/PasswordAuthentication yes/'  /etc/ssh/sshd_config
 RUN sudo sed -i.bak 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/'       /etc/ssh/sshd_config
