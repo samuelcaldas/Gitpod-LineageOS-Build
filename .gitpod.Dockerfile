@@ -93,9 +93,8 @@ RUN sudo -u gitpod echo 'set tmate-session-name "lineage17"'                    
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN mkdir -p /home/gitpod/.config/code-server
 RUN echo 'bind-addr: 0.0.0.0:8080'  >> /home/gitpod/.config/code-server/config.yaml
-RUN echo 'cert: false'              >> /home/gitpod/.config/code-server/config.yaml
-RUN echo 'disable-telemetry'        >> /home/gitpod/.config/code-server/config.yaml
-RUN echo 'auth: none'               >> /home/gitpod/.config/code-server/config.yaml
+RUN echo 'auth: none'              >> /home/gitpod/.config/code-server/config.yaml
+RUN echo 'cert: false'        >> /home/gitpod/.config/code-server/config.yaml
 RUN echo 'user-data-dir: /workspace/Gitpod-LineageOS-Build/code-server' >> /home/gitpod/.config/code-server/config.yaml 
 
 USER gitpod
