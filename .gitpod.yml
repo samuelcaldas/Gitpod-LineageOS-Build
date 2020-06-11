@@ -5,5 +5,11 @@ ports:
     onOpen: open-browser
   - port: 3333
 tasks:
-  - command: mv /home/gitpod/.sdkman/candidates/java /home/gitpod/.sdkman/candidates/java_old; tmate -F; cat /home/gitpod/.ssh/id_rsa; code-server --disable-telemetry --auth=none --user-data-dir=/workspace/Gitpod-LineageOS-Build/code-server
-  - command: cd /workspace/Gitpod-LineageOS-Build/lineage; tmux
+  - command: mv /home/gitpod/.sdkman/candidates/java /home/gitpod/.sdkman/candidates/java_old; /
+    cat /home/gitpod/.ssh/id_rsa; /
+    code-server /
+      # --disable-telemetry --auth=none --user-data-dir=/workspace/Gitpod-LineageOS-Build/code-server 
+  - command: cd /workspace/Gitpod-LineageOS-Build/lineage; /
+    tmate /
+      -k tmk-7KLySbafzKyMFRjgAZuAbV3vm2 /
+      -n lineage17
