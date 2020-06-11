@@ -57,6 +57,7 @@ RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.
 RUN sudo -u gitpod touch /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
 RUN sudo -u gitpod chmod 600 /home/gitpod/.ssh/authorized_keys
+RUN sed -i.bak 's/#   Port 22/   Port 3333/' ~/.config/code-server/config.yaml
 RUN sudo service ssh restart
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh

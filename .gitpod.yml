@@ -3,6 +3,7 @@ image:
 ports:
   - port: 8080
     onOpen: open-browser
+    - port: 3333
 tasks:
   - command: mv /home/gitpod/.sdkman/candidates/java /home/gitpod/.sdkman/candidates/java_old; code-server --disable-telemetry --auth=none --user-data-dir=/workspace/Gitpod-LineageOS-Build/code-server -vvv
   - command: cd /workspace/Gitpod-LineageOS-Build/lineage; tmux
