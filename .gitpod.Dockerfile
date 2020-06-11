@@ -9,6 +9,7 @@ FROM gitpod/workspace-full:latest
 USER root
 RUN sudo echo "Set disable_coredump false" >> /etc/sudo.conf
 RUN apt-get update && apt-get install -y \
+        tmate \
         sudo \
         openjdk-8-jdk \
         openssh-server \
