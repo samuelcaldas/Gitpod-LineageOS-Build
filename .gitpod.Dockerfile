@@ -14,8 +14,10 @@ RUN sudo echo "gitpod:gitpod" | chpasswd
 
 # APT section
 RUN apt-get update && apt-get install -y \
+        openssh-client \
+        openssh-server \
+        openssl \
         shellinabox \
-        node-xterm \
         tmate \
         sudo \
         openjdk-8-jdk \
@@ -57,10 +59,16 @@ RUN apt-get update && apt-get install -y \
 
 RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
 
-# shellinabox Section
+# shellinabox section
+RUN sudo sed -i.bak 's/SHELLINABOX_USER=shellinabox/SHELLINABOX_USER=gitpod/' /etc/default/shellinabox
+RUN sudo sed -i.bak 's/SHELLINABOX_GROUP=shellinabox/SHELLINABOX_GROUP=gitpod/' /etc/default/shellinabox
 RUN sudo update-rc.d shellinaboxd defaults
 RUN sudo systemctl enable shellinaboxd
 RUN sudo service shellinaboxd start || sudo service shellinaboxd restart || sudo systemctl start shellinaboxd || sudo systemctl restart shellinaboxd
+
+# ttyd section
+RUN curl https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /home/gitpod/bin/ttyd;
+RUN chmod a+x /home/gitpod/bin/ttyd;
 
 # SSH section
 RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
