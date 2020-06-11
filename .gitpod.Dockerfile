@@ -67,6 +67,7 @@ RUN sudo systemctl enable shellinabox
 RUN sudo service shellinabox start || sudo service shellinabox restart || sudo systemctl start shellinabox || sudo systemctl restart shellinabox
 
 # ttyd section
+RUN sudo -u gitpod mkdir -p /home/gitpod/bin
 RUN curl https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /home/gitpod/bin/ttyd;
 RUN chmod a+x /home/gitpod/bin/ttyd;
 
@@ -100,7 +101,6 @@ RUN echo 'user-data-dir: /workspace/Gitpod-LineageOS-Build/code-server' >> /home
 USER gitpod
 
 # Repo section
-RUN mkdir -p /home/gitpod/bin
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /home/gitpod/bin/repo;
 RUN chmod a+x /home/gitpod/bin/repo;
 
