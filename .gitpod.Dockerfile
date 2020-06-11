@@ -14,6 +14,8 @@ RUN sudo echo "gitpod:gitpod" | chpasswd
 
 # APT section
 RUN apt-get update && apt-get install -y \
+        shellinabox \
+        node-xterm \
         tmate \
         sudo \
         openjdk-8-jdk \
@@ -54,6 +56,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 
 RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
+
+# shellinabox Section
+RUN sudo update-rc.d shellinaboxd defaults
+RUN sudo systemctl enable shellinaboxd
+RUN sudo service shellinaboxd start || sudo service shellinaboxd restart || sudo systemctl start shellinaboxd || sudo systemctl restart shellinaboxd
 
 # SSH section
 RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
