@@ -2,22 +2,17 @@ FROM gitpod/workspace-full-vnc:latest
 
 USER root
 
-RUN sudo echo "Set disable_coredump false" >> /etc/sudo.conf
-RUN sudo echo "gitpod:root" | chpasswd
-RUN sudo echo "gitpod:gitpod" | chpasswd
+RUN echo "Set disable_coredump false" >> /etc/sudo.conf
+RUN echo "gitpod:root" | chpasswd
+RUN echo "gitpod:gitpod" | chpasswd
 
 # APT section
+RUN add-apt-repository ppa:maarten-fonville/android-studio -y
 RUN apt-get update && apt-get install -y \
-        openssh-client \
-        openssh-server \
+        android-studio \
         openssl \
-        shellinabox \
-        tmate \
-        sudo \
         openjdk-8-jdk \
-        openssh-server \
         tmux \
-        screen \
         bc \
         bison \
         build-essential \
@@ -48,38 +43,50 @@ RUN apt-get update && apt-get install -y \
         xsltproc \
         zip \
         zlib1g-dev \
-        net-tools \
+        #net-tools \
+        #openssh-client \
+        #openssh-server \
+        #shellinabox \
+        #screen \
+        #tmate \
+        #sudo \
     && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*;
 
 RUN update-java-alternatives -s java-1.8.0-openjdk-amd64;
 
 # shellinabox section
-RUN sudo sed -i.bak 's/SHELLINABOX_USER=shellinabox/SHELLINABOX_USER=gitpod/' /etc/default/shellinabox
-RUN sudo sed -i.bak 's/SHELLINABOX_GROUP=shellinabox/SHELLINABOX_GROUP=gitpod/' /etc/default/shellinabox
-RUN sudo update-rc.d shellinabox defaults
-RUN sudo systemctl enable shellinabox
-RUN sudo service shellinabox start || sudo service shellinabox restart || sudo systemctl start shellinabox || sudo systemctl restart shellinabox
+#RUN sudo sed -i.bak 's/SHELLINABOX_USER=shellinabox/SHELLINABOX_USER=gitpod/' /etc/default/shellinabox
+#RUN sudo sed -i.bak 's/SHELLINABOX_GROUP=shellinabox/SHELLINABOX_GROUP=gitpod/' /etc/default/shellinabox
+#RUN sudo update-rc.d shellinabox defaults
+#RUN sudo systemctl enable shellinabox
+#RUN sudo service shellinabox start || sudo service shellinabox restart || sudo systemctl start shellinabox || sudo systemctl restart shellinabox
 
 # ttyd section
-RUN sudo -u gitpod mkdir -p /home/gitpod/bin
-RUN curl https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /home/gitpod/bin/ttyd;
-RUN chmod a+x /home/gitpod/bin/ttyd;
+#RUN sudo -u gitpod mkdir -p /home/gitpod/bin
+#RUN curl https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 > /home/gitpod/bin/ttyd;
+#RUN chmod a+x /home/gitpod/bin/ttyd;
 
 # SSH section
-RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
-RUN sudo -u gitpod chmod 700 /home/gitpod/.ssh
-RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.ssh/id_rsa
-RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
-RUN sudo chmod 600 /home/gitpod/.ssh/authorized_keys
-RUN sudo sed -i.bak 's/#Port 22/Port 3333/' /etc/ssh/sshd_config
-RUN sudo sed -i.bak 's/#PasswordAuthentication yes/PasswordAuthentication yes/'  /etc/ssh/sshd_config
-RUN sudo sed -i.bak 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/'       /etc/ssh/sshd_config
-RUN sudo sed -i.bak 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/'  /etc/ssh/sshd_config
-RUN sudo update-rc.d ssh defaults
-RUN sudo systemctl enable ssh
-RUN sudo service ssh start || sudo service ssh restart || sudo systemctl start ssh || sudo systemctl restart ssh
+#RUN sudo -u gitpod mkdir -p /home/gitpod/.ssh
+#RUN sudo -u gitpod chmod 700 /home/gitpod/.ssh
+#RUN sudo -u gitpod ssh-keygen -t rsa -b 2048 -N "" -C "gitpod" -f /home/gitpod/.ssh/id_rsa
+#RUN sudo -u gitpod cat /home/gitpod/.ssh/id_rsa.pub >> /home/gitpod/.ssh/authorized_keys
+#RUN sudo chmod 600 /home/gitpod/.ssh/authorized_keys
+#RUN sudo sed -i.bak 's/#Port 22/Port 3333/' /etc/ssh/sshd_config
+#RUN sudo sed -i.bak 's/#PasswordAuthentication yes/PasswordAuthentication yes/'  /etc/ssh/sshd_config
+#RUN sudo sed -i.bak 's/#PermitEmptyPasswords no/PermitEmptyPasswords yes/'       /etc/ssh/sshd_config
+#RUN sudo sed -i.bak 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/'  /etc/ssh/sshd_config
+#RUN sudo update-rc.d ssh defaults
+#RUN sudo systemctl enable ssh
+#RUN sudo service ssh start || sudo service ssh restart || sudo systemctl start ssh || sudo systemctl restart ssh
 
 # Tmate section
+RUN wget -P /home/gitpod/ https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-amd64.tar.xz
+RUN tar -C /home/gitpod/ -xf tmate-2.4.0-static-linux-amd64.tar.xz
+RUN mv /home/gitpod/tmate-2.4.0-static-linux-amd64/tmate /home/gitpod/bin/tmate
+RUN rm -R /home/gitpod/tmate-2.4.0-static-linux-amd64
+RUN rm -R /home/gitpod/tmate-2.4.0-static-linux-amd64.tar.xz
+RUN chmod a+x /home/gitpod/bin/tmate;
 RUN sudo -u gitpod echo 'set tmate-api-key "tmk-7KLySbafzKyMFRjgAZuAbV3vm2"'    >> /home/gitpod/.tmate.conf
 RUN sudo -u gitpod echo 'set tmate-session-name "lineage17"'                    >> /home/gitpod/.tmate.conf
 
