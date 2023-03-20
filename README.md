@@ -47,8 +47,3 @@ This project is under Apache 2.0 license.
 ## Contribution
 
 If you want to contribute to this project, please make a pull request with your changes or suggestions.
-
-Origem: conversa com o Bing, 19/03/2023(1) . https://bing.com/search?q=translate+README.md+to+english Acessado 19/03/2023.
-(2) Google Translate. https://translate.google.com/m Acessado 19/03/2023.
-(3) Translate Markdown(Readme.md) to Any Language. - DEV Community. https://dev.to/dephraiim/translate-readme-to-any-language-2jia Acessado 19/03/2023.
-(4) Translate and convert Markdown files - Free File Format Apps. https://products.groupdocs.app/translation/markdown Acessado 19/03/2023.
